@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle } from 'lucide-react';
 
 const TabSwitchWarning = () => {
@@ -23,13 +23,13 @@ const TabSwitchWarning = () => {
   return (
     <AnimatePresence>
       {showWarning && (
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0B0F19]/90 backdrop-blur-xl"
         >
-          <motion.div 
+          <Motion.div 
             initial={{ scale: 0.9, y: 30 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: 30 }}
@@ -59,8 +59,8 @@ const TabSwitchWarning = () => {
             >
               Acknowledge & Return
             </button>
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   );

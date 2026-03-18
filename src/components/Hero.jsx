@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const Hero = () => {
   return (
@@ -17,7 +17,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-24 md:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -33,13 +33,13 @@ const Hero = () => {
             </p>
             
             <div className="pt-4">
-              <motion.button 
+              <Motion.button 
                  whileHover={{ scale: 1.05 }}
                  whileTap={{ scale: 0.95 }}
                  className="bg-white text-[#161a23] px-8 py-3 rounded-full font-bold text-sm shadow-lg hover:bg-gray-100 transition-colors"
               >
                 Learn More
-              </motion.button>
+              </Motion.button>
             </div>
 
             <div className="mt-16 pt-8 border-t border-white/5">
@@ -47,16 +47,16 @@ const Hero = () => {
                  Protect Your Ride with Our Advanced
                </p>
             </div>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, x: 50, rotateX: 10, rotateY: -10 }}
             animate={{ opacity: 1, x: 0, rotateX: 0, rotateY: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             className="relative h-[400px] lg:h-[600px] flex justify-center items-center perspective-1000"
           >
             {/* Mockup Isometric Image Graphic */}
-            <motion.div 
+            <Motion.div 
                animate={{ y: [-10, 10, -10] }}
                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
                className="relative w-full h-full flex justify-end items-center"
@@ -69,8 +69,8 @@ const Hero = () => {
               />
               {/* Optional: Add a second overlapping shape to simulate the UI screen pop-out from the user screenshot */}
               <div className="absolute inset-x-0 bottom-1/4 h-32 bg-gradient-to-t from-blue-500/20 to-transparent blur-3xl rounded-full"></div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
 
         </div>
       </div>

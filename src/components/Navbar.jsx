@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mountain, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -18,8 +18,8 @@ const Navbar = () => {
           
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Mountain className="h-6 w-6 text-white" />
-            <span className="text-xl font-bold tracking-tight text-white drop-shadow-sm">GlobalGuard Trackers</span>
+            <img src="/vikram-logo.svg" alt="Vikram GPS Tracker" className="h-7 w-7" />
+            <span className="text-xl font-bold tracking-tight text-white drop-shadow-sm">Vikram GPS Tracker</span>
           </div>
           
           {/* Desktop Links */}
@@ -28,12 +28,12 @@ const Navbar = () => {
             <a href="#about" className="text-xs font-mono uppercase tracking-widest text-gray-400 hover:text-white transition-colors cursor-pointer">About</a>
             <a href="#products" className="text-xs font-mono uppercase tracking-widest text-gray-400 hover:text-white transition-colors cursor-pointer">Products</a>
             <a href="#contact" className="text-xs font-mono uppercase tracking-widest text-gray-400 hover:text-white transition-colors cursor-pointer">Contact</a>
-            <a href="https://maps.google.com/?q=GlobalGuard+Trackers+Store" target="_blank" rel="noopener noreferrer" className="text-xs font-mono uppercase tracking-widest text-[#25D366] hover:text-white transition-colors cursor-pointer flex items-center space-x-1">
+            <a href="https://maps.google.com/?q=Vikram+GPS+Tracker+Store" target="_blank" rel="noopener noreferrer" className="text-xs font-mono uppercase tracking-widest text-[#25D366] hover:text-white transition-colors cursor-pointer flex items-center space-x-1">
               <span>Find Us</span>
             </a>
-            <button className="border border-[#145a32] text-[#8ce99a] bg-[#0c2f1f] px-6 py-2 rounded-full text-xs font-mono uppercase tracking-widest hover:bg-[#145a32] hover:text-white transition-colors">
+            <a href="#products" className="border border-[#145a32] text-[#8ce99a] bg-[#0c2f1f] px-6 py-2 rounded-full text-xs font-mono uppercase tracking-widest hover:bg-[#145a32] hover:text-white transition-colors">
               Shop Now
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -56,10 +56,14 @@ const Navbar = () => {
               <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-3 rounded-md text-sm font-mono uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5">About</a>
               <a href="#products" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-3 rounded-md text-sm font-mono uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5">Products</a>
               <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-3 rounded-md text-sm font-mono uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5">Contact</a>
-              <a href="https://maps.google.com/?q=GlobalGuard+Trackers+Store" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-3 rounded-md text-sm font-mono uppercase tracking-widest text-[#25D366] hover:text-white hover:bg-white/5">Find Us</a>
-              <button className="w-full mt-4 border border-[#145a32] text-[#8ce99a] bg-[#0c2f1f] px-6 py-3 rounded-lg text-sm font-mono uppercase tracking-widest hover:bg-[#145a32] hover:text-white transition-colors">
+              <a href="https://maps.google.com/?q=Vikram+GPS+Tracker+Store" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-3 rounded-md text-sm font-mono uppercase tracking-widest text-[#25D366] hover:text-white hover:bg-white/5">Find Us</a>
+              <a
+                href="#products"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full mt-4 border border-[#145a32] text-[#8ce99a] bg-[#0c2f1f] px-6 py-3 rounded-lg text-sm font-mono uppercase tracking-widest hover:bg-[#145a32] hover:text-white transition-colors"
+              >
                 Shop Now
-              </button>
+              </a>
             </div>
           </div>
         )}

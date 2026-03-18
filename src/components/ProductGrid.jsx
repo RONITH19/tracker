@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
+import { fetchProductsFromGoogleSheetCsv } from '../lib/productsFromGoogleSheetCsv';
 
-const products = [
+const sampleProducts = [
   {
     id: 1,
     name: 'Vehicle Tracker V2',
@@ -9,7 +10,7 @@ const products = [
     priceStandard: 129,
     pricePro: 179,
     image: 'https://images.unsplash.com/photo-1605342411874-55e1c02abfbd?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: '6 months', waterproof: 'IP68', range: 'Global (4G LTE)' }
+    specs: { battery: '6 months', waterproof: 'IP68', range: 'Global (4G LTE)' },
   },
   {
     id: 2,
@@ -18,7 +19,7 @@ const products = [
     priceStandard: 89,
     pricePro: 119,
     image: 'https://images.unsplash.com/photo-1594897034375-7195f2425ac2?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: '14 days', waterproof: 'IP67', range: 'Global (4G LTE)' }
+    specs: { battery: '14 days', waterproof: 'IP67', range: 'Global (4G LTE)' },
   },
   {
     id: 3,
@@ -27,7 +28,7 @@ const products = [
     priceStandard: 59,
     pricePro: 89,
     image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: '30 days', waterproof: 'IP68', range: 'Local (Bluetooth + 4G hybrid)' }
+    specs: { battery: '30 days', waterproof: 'IP68', range: 'Local (Bluetooth + 4G hybrid)' },
   },
   {
     id: 4,
@@ -36,12 +37,33 @@ const products = [
     priceStandard: 249,
     pricePro: 349,
     image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: 'Hardwired', waterproof: 'IPX5', range: 'Global Satellite + 5G' }
-  }
+    specs: { battery: 'Hardwired', waterproof: 'IPX5', range: 'Global Satellite + 5G' },
+  },
 ];
 
 const ProductGrid = ({ onOpenSpecs }) => {
   const [isPro, setIsPro] = useState(false);
+  const [products, setProducts] = useState(sampleProducts);
+
+  useEffect(() => {
+    const csvUrl = import.meta.env.VITE_PRODUCTS_SHEET_CSV_URL;
+    if (!csvUrl) return;
+
+    let cancelled = false;
+
+    fetchProductsFromGoogleSheetCsv(csvUrl)
+      .then((fetched) => {
+        if (cancelled) return;
+        if (Array.isArray(fetched) && fetched.length > 0) setProducts(fetched);
+      })
+      .catch((err) => {
+        console.warn('Failed to load products from Google Sheet CSV:', err);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section className="py-24 relative bg-[#13161c]" id="products">
@@ -49,8 +71,8 @@ const ProductGrid = ({ onOpenSpecs }) => {
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 font-bold text-offset-shadow-light">Elite Tracking Arsenal</h2>
-            <p className="text-gray-400 max-w-xl font-sans">Choose standard features for everyday security or upgrade to Pro for millisecond pings and satellite fallback.</p>
+            <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 font-bold text-offset-shadow-light">Vikram GPS Tracker Products</h2>
+            <p className="text-gray-400 max-w-xl font-sans">Standard for everyday tracking. Pro for faster pings and advanced connectivity.</p>
           </div>
 
           {/* Comparison Toggle */}
@@ -71,8 +93,13 @@ const ProductGrid = ({ onOpenSpecs }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map(product => (
-            <ProductCard key={product.id} product={product} isPro={isPro} onOpenSpecs={onOpenSpecs} />
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              isPro={isPro}
+              onOpenSpecs={onOpenSpecs}
+            />
           ))}
         </div>
 

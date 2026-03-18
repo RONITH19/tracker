@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const RedefineSection = () => {
   return (
@@ -19,7 +19,7 @@ const RedefineSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -37,17 +37,17 @@ const RedefineSection = () => {
             </p>
             
             <div className="pt-4">
-              <motion.button 
+              <Motion.button 
                  whileHover={{ scale: 1.05 }}
                  whileTap={{ scale: 0.95 }}
                  className="bg-white border text-[#1a2b3c] px-8 py-3 rounded-full font-bold text-sm shadow-md hover:bg-gray-50 transition-colors"
               >
                 Explore Now
-              </motion.button>
+              </Motion.button>
             </div>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, y: 50, rotateZ: 5 }}
             whileInView={{ opacity: 1, y: 0, rotateZ: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -55,7 +55,7 @@ const RedefineSection = () => {
             className="relative h-[500px] lg:h-[700px] flex justify-center items-center"
           >
             {/* Phone Mockup with Map Pin overlapping */}
-            <motion.div 
+            <Motion.div 
                animate={{ y: [-5, 5, -5] }}
                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                className="relative w-full h-full flex justify-center items-center"
@@ -67,19 +67,19 @@ const RedefineSection = () => {
               />
               
               {/* Decorative Map Pins */}
-              <motion.div 
+              <Motion.div 
                  animate={{ y: [0, -10, 0] }}
                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", delay: 0.5 }}
                  className="absolute bottom-1/3 left-0 w-12 h-12 bg-red-500 rounded-full rounded-br-none rotate-45 flex justify-center items-center shadow-lg border-2 border-white"
               >
                  <div className="w-4 h-4 bg-white rounded-full -rotate-45"></div>
-              </motion.div>
+              </Motion.div>
               
               <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-blue-500 rounded-full rounded-br-none rotate-45 flex justify-center items-center shadow-lg border-2 border-white">
                  <div className="w-2 h-2 bg-white rounded-full -rotate-45"></div>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
 
         </div>
       </div>

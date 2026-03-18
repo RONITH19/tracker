@@ -11,7 +11,7 @@ export default {
         electricBlue: '#007AFF',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       animation: {
         'pulse-signal': 'pulse-signal 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',

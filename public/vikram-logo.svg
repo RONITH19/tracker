@@ -1,0 +1,18 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="30" y1="20" x2="200" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#007AFF"/>
+      <stop offset="1" stop-color="#25D366"/>
+    </linearGradient>
+  </defs>
+  <rect x="15" y="15" width="190" height="190" rx="55" fill="url(#g1)" fill-opacity="0.12"/>
+  <path d="M110 22C62.1 22 22 62.1 22 110C22 157.9 62.1 198 110 198C157.9 198 198 157.9 198 110C198 62.1 157.9 22 110 22Z" fill="url(#g1)" fill-opacity="0.08" stroke="url(#g1)" stroke-width="6"/>
+  <path d="M110 148C90.117 148 74 131.883 74 112C74 92.117 90.117 76 110 76C129.883 76 146 92.117 146 112C146 131.883 129.883 148 110 148Z" fill="#0B0F19"/>
+  <path d="M110 68C78 68 52 94 52 126C52 158 110 202 110 202C110 202 168 158 168 126C168 94 142 68 110 68Z" fill="#0B0F19" fill-opacity="0.12"/>
+  <path d="M110 96C100.059 96 92 104.059 92 114C92 123.941 100.059 132 110 132C119.941 132 128 123.941 128 114C128 104.059 119.941 96 110 96Z" fill="url(#g1)"/>
+  <path d="M94 114C94 104.955 101.955 97 111 97H111" stroke="#0B0F19" stroke-width="4" stroke-linecap="round"/>
+  <path d="M99.5 104.5H120.5" stroke="#0B0F19" stroke-width="6" stroke-linecap="round"/>
+  <path d="M110 93V136" stroke="#0B0F19" stroke-width="6" stroke-linecap="round" opacity="0.15"/>
+  <path d="M109.8 37.5L116 50H103.6L109.8 37.5Z" fill="url(#g1)" fill-opacity="0.9"/>
+</svg>
+

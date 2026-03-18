@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShieldAlert, Compass, Target } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const TransformSection = () => {
   return (
@@ -19,7 +19,7 @@ const TransformSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
           
           {/* Card 1 */}
-          <motion.div 
+          <Motion.div 
             whileHover={{ y: -5 }}
             className="bg-[#212631] p-8 rounded-3xl border border-[#2a303c] shadow-2xl relative overflow-hidden group"
           >
@@ -45,10 +45,10 @@ const TransformSection = () => {
                  <div className="w-16 h-1 bg-gray-700 rounded-full"></div>
                </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Card 2 */}
-          <motion.div 
+          <Motion.div 
             whileHover={{ y: -5 }}
             className="bg-[#212631] p-8 rounded-3xl border border-[#2a303c] shadow-2xl relative overflow-hidden group"
           >
@@ -84,10 +84,10 @@ const TransformSection = () => {
                  <div className="h-1 w-1/2 bg-gray-700 rounded-full mt-1"></div>
                </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Card 3 */}
-          <motion.div 
+          <Motion.div 
             whileHover={{ y: -5 }}
             className="bg-[#212631] p-8 rounded-3xl border border-[#2a303c] shadow-2xl relative overflow-hidden group flex flex-col justify-center"
           >
@@ -102,7 +102,7 @@ const TransformSection = () => {
             <p className="text-sm text-gray-400 font-sans leading-relaxed text-center mt-2">
               Transform your driving experience with our state-of-the-art vehicle security system.
             </p>
-          </motion.div>
+          </Motion.div>
 
         </div>
 

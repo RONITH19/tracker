@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { X, Battery, Droplets, Radio } from 'lucide-react';
 
 const TechSpecsPanel = ({ product, onClose }) => {
@@ -8,7 +8,7 @@ const TechSpecsPanel = ({ product, onClose }) => {
       {product && (
         <>
           {/* Backdrop */}
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -17,7 +17,7 @@ const TechSpecsPanel = ({ product, onClose }) => {
           />
 
           {/* Slide-over Panel */}
-          <motion.div
+          <Motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -85,7 +85,7 @@ const TechSpecsPanel = ({ product, onClose }) => {
                 Buy via WhatsApp
               </a>
             </div>
-          </motion.div>
+          </Motion.div>
         </>
       )}
     </AnimatePresence>

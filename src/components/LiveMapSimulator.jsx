@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { MapPin, Navigation, Activity } from 'lucide-react';
 
 const LiveMapSimulator = () => {
@@ -21,8 +21,12 @@ const LiveMapSimulator = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 text-offset-shadow-light">Command Center Simulation</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto font-sans">Experience our zero-latency tracking interface. Watch the live signal pulse in real-time as the target moves across the grid.</p>
+          <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 text-offset-shadow-light">
+            Live GPS Tracking Preview
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto font-sans">
+            Watch the simulated tracker updates in real time. See latitude, longitude, and status change as the target moves.
+          </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 items-center bg-[#161a23] rounded-3xl p-4 md:p-8 border border-[#2a303c] shadow-2xl">
@@ -41,7 +45,7 @@ const LiveMapSimulator = () => {
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000&h=800')] bg-cover bg-center opacity-40 mix-blend-luminosity brightness-50"></div>
 
             {/* Simulated Tracker Icon with Ping */}
-            <motion.div 
+            <Motion.div 
               animate={{ 
                 x: [0, 40, 20, -20, 0],
                 y: [0, -30, 20, 10, 0]
@@ -53,7 +57,7 @@ const LiveMapSimulator = () => {
               <div className="w-8 h-8 bg-black rounded-full border-2 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.8)] z-10 flex justify-center items-center">
                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               </div>
-            </motion.div>
+            </Motion.div>
           </div>
 
           {/* Data Sidebar */}

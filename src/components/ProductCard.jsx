@@ -1,14 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const ProductCard = ({ product, isPro, onOpenSpecs }) => {
   const currentPrice = isPro ? product.pricePro : product.priceStandard;
 
   return (
-    <motion.div 
+    <Motion.div 
       whileHover={{ y: -5, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="bg-[#212631] rounded-3xl p-6 relative flex flex-col items-center cursor-pointer group hover:border-[#3b82f6]/50 border border-[#2a303c] shadow-xl transition-all duration-300 overflow-hidden"
+      className="bg-[#161a23] rounded-3xl p-6 relative flex flex-col items-center cursor-pointer group shadow-xl transition-all duration-300 overflow-hidden"
       onClick={() => onOpenSpecs(product)}
     >
       {/* Background glow effect on hover */}
@@ -22,22 +22,22 @@ const ProductCard = ({ product, isPro, onOpenSpecs }) => {
       <img 
         src={product.image} 
         alt={product.name} 
-        className="w-40 h-40 object-cover my-6 transition-transform group-hover:scale-110 duration-500 rounded-2xl relative z-10 border border-white/5 shadow-lg" 
+        className="w-40 h-40 object-cover my-6 transition-transform group-hover:scale-110 duration-500 rounded-2xl relative z-10 shadow-lg" 
       />
 
       <div className="text-center w-full mt-auto relative z-10">
         <h3 className="text-xl font-bold text-white mb-2">{product.name}</h3>
         <p className="text-gray-400 text-sm mb-4 leading-relaxed font-sans">{product.description}</p>
-        <div className="flex justify-between items-center mt-4 border-t border-[#2a303c] pt-4">
+        <div className="flex justify-between items-center mt-4 pt-4">
           <span className="text-2xl font-extrabold text-white">
             ${currentPrice}
           </span>
-          <button className="text-sm font-medium text-white px-5 py-2 rounded-full bg-[#161a23] border border-[#2a303c] group-hover:bg-[#3b82f6] group-hover:border-[#3b82f6] shadow-md transition-all duration-300">
+          <button className="text-sm font-medium text-white px-5 py-2 rounded-full bg-[#0B0F19] group-hover:bg-[#3b82f6] shadow-md transition-all duration-300">
             View Details
           </button>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 };
 
