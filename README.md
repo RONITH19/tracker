@@ -16,9 +16,19 @@ The React Compiler is not enabled on this template because of its impact on dev 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 ## Product data (Google Sheets)
-`src/components/ProductGrid.jsx` can load products from a Google Sheet published as a CSV.
 
-1. Create a Google Sheet with these header columns (case-insensitive; spaces/underscores are ok):
-   `id, name, description, priceStandard, pricePro, image, battery, waterproof, range`
-2. Publish/export the sheet so the CSV URL works without login.
-3. Set `VITE_PRODUCTS_SHEET_CSV_URL` in your `.env` file (see `.env.example`).
+Products load from this sheet by default (CSV via same-origin `/google-sheet-export` so the browser avoids CORS issues):
+
+- [Vikram products sheet](https://docs.google.com/spreadsheets/d/15qJiWWGd70_yp4oGqP6zuf3fghMi5alWI3zKK4Vp8rE/edit?gid=0#gid=0)
+
+Row 1 headers (case-insensitive): `id, name, description, priceStandard, pricePro, image, battery, waterproof, range`
+
+**Set up Row 1 in your sheet:** we can’t edit your Google Sheet from this project. Either paste that header row into **A1:I1**, or in Google Sheets use **File → Import → Upload** and choose **`google-sheet-products-template.csv`** from this repo (it includes **9 products** from your listings, with descriptions and ₹ prices where you provided them).
+
+Product photos are served from this site under **`/products/`** (see `public/products/`). Cropped assets (`crop-01-*.png` …) focus on the product shots and hide most WhatsApp chrome; source screenshots stay as `*-dashcams.png` / `personal-and-engine-cutoff.png` for re-running **`npm run crop-products`** after you replace images.
+
+After you deploy, use full URLs in the `image` column if needed (e.g. `https://your-site.com/products/crop-01-personal-kit.png`).
+
+The grid **re-fetches every 60 seconds** (change with `VITE_PRODUCTS_REFRESH_MS` in `.env`).
+
+To use a **different** sheet, set `VITE_PRODUCTS_SHEET_CSV_URL` to its full `.../export?format=csv&gid=...` URL in `.env`.

@@ -1,67 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import { fetchProductsFromGoogleSheetCsv } from '../lib/productsFromGoogleSheetCsv';
+import { getProductsCsvUrl, getProductsRefreshMs } from '../config/productsSheet';
 
-const sampleProducts = [
-  {
-    id: 1,
-    name: 'Vehicle Tracker V2',
-    description: 'Real-time precise location for cars and motorcycles.',
-    priceStandard: 129,
-    pricePro: 179,
-    image: 'https://images.unsplash.com/photo-1605342411874-55e1c02abfbd?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: '6 months', waterproof: 'IP68', range: 'Global (4G LTE)' },
-  },
-  {
-    id: 2,
-    name: 'Personal Micro Base',
-    description: 'Ultra-compact wearable for personal safety.',
-    priceStandard: 89,
-    pricePro: 119,
-    image: 'https://images.unsplash.com/photo-1594897034375-7195f2425ac2?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: '14 days', waterproof: 'IP67', range: 'Global (4G LTE)' },
-  },
-  {
-    id: 3,
-    name: 'Pet Collar Pro',
-    description: 'Lightweight safety tracker for dogs and cats.',
-    priceStandard: 59,
-    pricePro: 89,
-    image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: '30 days', waterproof: 'IP68', range: 'Local (Bluetooth + 4G hybrid)' },
-  },
-  {
-    id: 4,
-    name: 'Fleet Hub Enterprise',
-    description: 'Multi-vehicle sync with advanced diagnostics.',
-    priceStandard: 249,
-    pricePro: 349,
-    image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=400&h=400',
-    specs: { battery: 'Hardwired', waterproof: 'IPX5', range: 'Global Satellite + 5G' },
-  },
-];
+const LOCAL_CATALOG = '/products-catalog.csv';
 
 const ProductGrid = ({ onOpenSpecs }) => {
   const [isPro, setIsPro] = useState(false);
-  const [products, setProducts] = useState(sampleProducts);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const csvUrl = import.meta.env.VITE_PRODUCTS_SHEET_CSV_URL;
-    if (!csvUrl) return;
-
+    const csvUrl = getProductsCsvUrl();
     let cancelled = false;
 
-    fetchProductsFromGoogleSheetCsv(csvUrl)
-      .then((fetched) => {
-        if (cancelled) return;
-        if (Array.isArray(fetched) && fetched.length > 0) setProducts(fetched);
-      })
-      .catch((err) => {
-        console.warn('Failed to load products from Google Sheet CSV:', err);
-      });
+    const loadLocalCatalog = () =>
+      fetchProductsFromGoogleSheetCsv(`${LOCAL_CATALOG}?_=${Date.now()}`);
+
+    const applyFetched = (fetched) => {
+      if (cancelled) return;
+      if (Array.isArray(fetched) && fetched.length > 0) setProducts(fetched);
+    };
+
+    const load = async () => {
+      const bust = csvUrl.includes('?') ? `&_=${Date.now()}` : `?_=${Date.now()}`;
+      const urlWithBust = `${csvUrl}${bust}`;
+
+      try {
+        const sheet = await fetchProductsFromGoogleSheetCsv(urlWithBust);
+        if (sheet?.length) {
+          applyFetched(sheet);
+          return;
+        }
+      } catch {
+        /* fall through to local catalog */
+      }
+      try {
+        const local = await loadLocalCatalog();
+        applyFetched(local);
+      } catch (err) {
+        console.warn('Failed to load products CSV:', err);
+      }
+    };
+
+    load();
+    const intervalMs = getProductsRefreshMs();
+    const id = window.setInterval(load, intervalMs);
 
     return () => {
       cancelled = true;
+      window.clearInterval(id);
     };
   }, []);
 

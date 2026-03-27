@@ -2,7 +2,7 @@ import React from 'react';
 import { motion as Motion } from 'framer-motion';
 
 const ProductCard = ({ product, isPro, onOpenSpecs }) => {
-  const currentPrice = isPro ? product.pricePro : product.priceStandard;
+  const currentPrice = Number(isPro ? product.pricePro : product.priceStandard) || 0;
 
   return (
     <Motion.div 
@@ -30,7 +30,7 @@ const ProductCard = ({ product, isPro, onOpenSpecs }) => {
         <p className="text-gray-400 text-sm mb-4 leading-relaxed font-sans">{product.description}</p>
         <div className="flex justify-between items-center mt-4 pt-4">
           <span className="text-2xl font-extrabold text-white">
-            ${currentPrice}
+            {currentPrice > 0 ? `₹${currentPrice.toLocaleString('en-IN')}` : 'Price on request'}
           </span>
           <button className="text-sm font-medium text-white px-5 py-2 rounded-full bg-[#0B0F19] group-hover:bg-[#3b82f6] shadow-md transition-all duration-300">
             View Details
